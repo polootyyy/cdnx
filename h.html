@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>xss harness</title>
+<style>
+  body{font:14px/1.5 -apple-system,Segoe UI,sans-serif;margin:0;background:#0e1013;color:#d7dbe0}
+  header{padding:14px 18px;background:#161a20;border-bottom:1px solid #262c35}
+  h1{font-size:15px;margin:0 0 6px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:0;height:calc(100vh - 120px)}
+  .col{padding:14px 18px;overflow:auto;border-right:1px solid #262c35}
+  .col:last-child{border:0}
+  h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7d8894;margin:0 0 8px}
+  .slot{min-height:40px;padding:10px;background:#12161b;border:1px dashed #2d343e;border-radius:6px;margin-bottom:14px}
+  pre{white-space:pre-wrap;word-break:break-all;background:#12161b;padding:10px;border-radius:6px;font-size:12px;color:#9fb3c8}
+  .ok{color:#4ade80}.bad{color:#f87171}
+</style>
+</head>
+<body>
+<header>
+  <h1>innerHTML payload harness</h1>
+  <div id="meta" style="color:#7d8894;font-size:12px"></div>
+</header>
+<div class="cols">
+  <div class="col">
+    <h2>payload (from ?p=)</h2>
+    <pre id="src"></pre>
+    <h2>innerHTML sink — what a v-html panel cell does</h2>
+    <div class="slot" id="s1"></div>
+    <h2>document.write sink — server-rendered page</h2>
+    <div class="slot" id="s2"></div>
+    <h2>jQuery-style .html() sink — script tags run</h2>
+    <div class="slot" id="s3"></div>
+  </div>
+  <div class="col">
+    <h2>log</h2>
+    <pre id="log"></pre>
+  </div>
+</div>
+<script>
+const logEl = document.getElementById('log');
+function log(kind, msg) {
+  const good = kind === 'fired' || kind === 'beacon';
+  const d = document.createElement('div');
+  d.className = good ? 'ok' : (kind === 'error' ? 'bad' : '');
+  d.textContent = `[${kind}] ${msg}`;
+  logEl.appendChild(d);
+  window.__log = (window.__log || []).concat(`${kind}:${msg}`);
+}
+window.addEventListener('error', e => log('error', `${e.message} @${(e.filename||'').split('/').pop()}:${e.lineno}`));
+window.__beacons = [];
+const OrigImg = window.Image;
+window.Image = function () {
+  const i = new OrigImg();
+  let v = '';
+  Object.defineProperty(i, 'src', { set(x) { v = x; window.__beacons.push(x); log('beacon', x); }, get() { return v; }, configurable: true });
+  return i;
+};
+
+const payload = decodeURIComponent((location.search.match(/[?&]p=([^&]*)/) || [, ''])[1]);
+document.getElementById('src').textContent = payload || '(none)';
+document.getElementById('meta').textContent =
+  payload ? `len=${payload.length}` : 'add ?p=<urlencoded payload>';
+
+if (payload) {
+  // 1. exact innerHTML semantics
+  document.getElementById('s1').innerHTML = payload;
+  log('sink', 'innerHTML set — inline handlers evaluated, <script> NOT run');
+  // 2. document.write semantics into a fresh document-less slot
+  const f = document.createElement('iframe');
+  f.style.cssText = 'width:100%;height:0;border:0';
+  document.getElementById('s2').appendChild(f);
+  f.contentDocument.open(); f.contentDocument.write(payload); f.contentDocument.close();
+  log('sink', 'document.write done in iframe — <script> run here');
+  // 3. jQuery .html() semantics: scripts are extracted and eval'd
+  const host = document.getElementById('s3');
+  host.innerHTML = payload;
+  host.querySelectorAll('script').forEach(s => {
+    const n = document.createElement('script');
+    if (s.src) n.src = s.src; else n.textContent = s.textContent;
+    host.appendChild(n);
+    log('sink', 'script re-injected .html()-style: ' + (s.src || 'inline'));
+  });
+  setTimeout(() => log('done', 'settled'), 2500);
+}
+</script>
+</body>
+</html>
