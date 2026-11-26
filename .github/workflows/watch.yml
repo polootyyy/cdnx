@@ -25,6 +25,10 @@ jobs:
           curl -s --max-time 30 "https://ntfy.sh/$TOPIC/json?poll=1&since=$LAST" -o /tmp/raw.txt || true
           python3 - <<'PY'
           import json, time
+          try:
+              seen = set(open('state/seen').read().split())
+          except Exception:
+              seen = set()
           lines = [l for l in open('/tmp/raw.txt') if l.strip()]
           msgs = []
           for l in lines:
@@ -32,11 +36,14 @@ jobs:
                   j = json.loads(l)
               except Exception:
                   continue
-              if j.get('event') == 'message' and j.get('message'):
+              if j.get('event') == 'message' and j.get('message') and j.get('id') not in seen:
                   msgs.append(j)
           if not msgs:
               print('no new messages')
               raise SystemExit(0)
+          for m in msgs:
+              seen.add(m['id'])
+          open('state/seen', 'w').write('\n'.join(sorted(seen)[-300:]) + '\n')
           newest = max(m['time'] for m in msgs)
           open('state/last', 'w').write(str(newest))
           p = 'hits/%s.txt' % time.strftime('%Y%m%dT%H%M%SZ', time.gmtime())
