@@ -1,0 +1,1 @@
+[8OY1S0keFSF2] t=agent CANARY https://admin.halolive.chat/ || Host CMS || canary || canary
