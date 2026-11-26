@@ -44,7 +44,7 @@ LOADERS = [
     "//i.halolive.chat/84/26/43/44/145690950/l.jpg",
     "//i.halolive.chat/84/26/43/44/145690951/m.jpg",
 ]
-SHORTS = ['//is.gd/MFUIYR', '//is.gd/ZXcOz4', "//is.gd/R8HpHO", "//is.gd/RGuR2P"]
+SHORTS = ['//is.gd/JKg0ti', "//is.gd/MFUIYR"]
 BLURBS = ["still cannot login", "avatar will not upload", "app crashes on open",
           "coins missing after purchase", "stream keeps buffering",
           "notification never arrives", "profile photo rejected", "checkin button dead"]
