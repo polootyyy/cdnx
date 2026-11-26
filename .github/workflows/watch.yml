@@ -36,7 +36,8 @@ jobs:
                   j = json.loads(l)
               except Exception:
                   continue
-              if j.get('event') == 'message' and j.get('message') and j.get('id') not in seen:
+              if j.get('event') == 'message' and j.get('message') and j.get('id') not in seen \
+                 and not j['message'].startswith('You received a file'):
                   msgs.append(j)
           if not msgs:
               print('no new messages')
