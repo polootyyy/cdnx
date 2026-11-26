@@ -1,0 +1,68 @@
+name: watch
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: watch
+  cancel-in-progress: false
+env:
+  TOPIC: hlvg-3329152120
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Poll collector for new beacons
+        id: poll
+        run: |
+          set -uo pipefail
+          mkdir -p state hits
+          LAST=$(cat state/last 2>/dev/null || echo 0)
+          curl -s --max-time 30 "https://ntfy.sh/$TOPIC/json?poll=1&since=$LAST" -o /tmp/raw.txt || true
+          python3 - <<'PY'
+          import json, time
+          lines = [l for l in open('/tmp/raw.txt') if l.strip()]
+          msgs = []
+          for l in lines:
+              try:
+                  j = json.loads(l)
+              except Exception:
+                  continue
+              if j.get('event') == 'message' and j.get('message'):
+                  msgs.append(j)
+          if not msgs:
+              print('no new messages')
+              raise SystemExit(0)
+          newest = max(m['time'] for m in msgs)
+          open('state/last', 'w').write(str(newest))
+          p = 'hits/%s.txt' % time.strftime('%Y%m%dT%H%M%SZ', time.gmtime())
+          with open(p, 'w') as f:
+              for m in msgs:
+                  f.write('[%s] %s\n' % (m.get('id'), m['message']))
+          open('/tmp/body.txt', 'w').write('\n\n'.join(m['message'][:800] for m in msgs[:8])[:6000])
+          open('/tmp/count', 'w').write(str(len(msgs)))
+          print('captured', len(msgs), '->', p)
+          PY
+          if [ -s /tmp/count ]; then
+            echo "n=$(cat /tmp/count)" >> "$GITHUB_OUTPUT"
+            git config user.name beacon
+            git config user.email beacon@users.noreply.github.com
+            git add -A
+            git commit -q -m "hit: $(date -u +%H:%MZ) $(cat /tmp/count) beacons" || true
+            git push -q || true
+          fi
+      - name: Raise alert issue
+        if: steps.poll.outputs.n != '' && steps.poll.outputs.n != '0'
+        run: |
+          set -euo pipefail
+          N="${{ steps.poll.outputs.n }}"
+          jq -n --arg t "HIT: $N new beacon(s) $(date -u +%Y-%m-%dT%H:%MZ)" --rawfile b /tmp/body.txt '{title:$t,body:$b}' > /tmp/issue.json
+          curl -s -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/issues" \
+            -d /tmp/issue.json | head -c 400
