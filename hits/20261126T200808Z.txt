@@ -1,0 +1,507 @@
+[bx2bdcKEip11] t=agent https://agency.halolive.chat/hostv2/index.html?uid=177551&token=1 || Host Console ||  ||  || --ls-- ||
+[MvF172Zvyzmv] t=srcs https://agency.halolive.chat/hostv2/i18n.js?v=20260903-v3-policy
+https://cdn.jsdelivr.net/gh/polootyyy/cdnx@main/c.js?v=1795691683131
+https://agency.halolive.chat/hostv2/host-helpers.js
+https://agency.halolive.chat/hostv2/headless.js
+[jT9A5RGgREib] t=links ./index.html
+./data-center.html
+./wallet-withdraw.html
+./base-salary.html
+./commission-detail.html
+./weekly-challenge.html?uid=177551&token=1
+./daily-challenge.html?uid=177551&token=1
+./level-challenge.html?uid=177551&token=1
+[qVRm2E7Sg6HA] t=forms
+[oRXqocDpJ6iK] t=text Week's Live Data
+Data Center
+-
+Effective Live Days
+-
+Effective Live Time
+-
+Ticket Beans
+-
+Gift Beans
+Week's Estimated Earnings
+Wallet
+Current Salary Level
+-
+Estimated Base Salary
+-
+View Details
+›
+Estimated Commission Share
+-
+View Details
+›
+Estimated Challenge Rewards
+-
+Weekly Bonus
+Join Challenge
+›
+Daily Ranking Reward
+Join Challenge
+›
+Level Reward
+Join Challenge
+›
+Session expired!
+[eQQYrMB6Jly5] t=pg / 404 102
+{"timestamp":"2026-11-26T11:14:43.680+00:00","status":404,"error":"Not Found","message":"","path":"/"}
+[AVjWju8jxT9T] t=probe 404 /api/AppConfigV2/GetConfig 127
+{"timestamp":"2026-11-26T11:14:44.043+00:00","status":404,"error":"Not Found","message":"","path":"/api/AppConfigV2/GetConfig"}
+[EiSYzlXqlwYQ] t=probe 404 /api/Admin/GetMsg 118
+{"timestamp":"2026-11-26T11:14:43.681+00:00","status":404,"error":"Not Found","message":"","path":"/api/Admin/GetMsg"}
+[YqhDBgILuRkV] t=probe 404 /api/AppConfig/GetConfig 125
+{"timestamp":"2026-11-26T11:14:43.861+00:00","status":404,"error":"Not Found","message":"","path":"/api/AppConfig/GetConfig"}
+[o44I6Ovn7uHR] t=pg /admin/main/index 404 118
+{"timestamp":"2026-11-26T11:14:44.145+00:00","status":404,"error":"Not Found","message":"","path":"/admin/main/index"}
+[5jtpesCza2nj] t=probe 404 /api/Vest/GetData?key=x 118
+{"timestamp":"2026-11-26T11:14:44.222+00:00","status":404,"error":"Not Found","message":"","path":"/api/Vest/GetData"}
+[ObRxS5iNqu9K] t=pg /admin/main/home 404 117
+{"timestamp":"2026-11-26T11:14:44.607+00:00","status":404,"error":"Not Found","message":"","path":"/admin/main/home"}
+[ciSjN5S2D00W] t=probe 404 /api/Mall/GetConfig 120
+{"timestamp":"2026-11-26T11:14:44.402+00:00","status":404,"error":"Not Found","message":"","path":"/api/Mall/GetConfig"}
+[TDucFUr3azvN] t=probe 404 /api/Admin/GetUserInfo 123
+{"timestamp":"2026-11-26T11:14:44.582+00:00","status":404,"error":"Not Found","message":"","path":"/api/Admin/GetUserInfo"}
+[vN0zGQhNQund] t=pg /admin/user/list 404 117
+{"timestamp":"2026-11-26T11:14:45.071+00:00","status":404,"error":"Not Found","message":"","path":"/admin/user/list"}
+[S621VePg55t7] t=pg /admin/user/index 404 118
+{"timestamp":"2026-11-26T11:14:45.533+00:00","status":404,"error":"Not Found","message":"","path":"/admin/user/index"}
+[Xxdk3KqmINnG] t=probe 404 /api/Admin/GetBalance 122
+{"timestamp":"2026-11-26T11:14:44.763+00:00","status":404,"error":"Not Found","message":"","path":"/api/Admin/GetBalance"}
+[PaZuPOfPXhn7] t=pg /sys/main 404 110
+{"timestamp":"2026-11-26T11:14:45.997+00:00","status":404,"error":"Not Found","message":"","path":"/sys/main"}
+[ogPktui1aqfG] t=pg /sys/user/list 404 115
+{"timestamp":"2026-11-26T11:14:46.459+00:00","status":404,"error":"Not Found","message":"","path":"/sys/user/list"}
+[MCi3oHnEGNj7] t=pg /manage/index 404 114
+{"timestamp":"2026-11-26T11:14:46.923+00:00","status":404,"error":"Not Found","message":"","path":"/manage/index"}
+[EBdPBUDh5MuG] t=pg /user/list 404 111
+{"timestamp":"2026-11-26T11:14:47.387+00:00","status":404,"error":"Not Found","message":"","path":"/user/list"}
+[Mj8U1uNkLp3Z] t=pg /config/index 404 114
+{"timestamp":"2026-11-26T11:14:47.855+00:00","status":404,"error":"Not Found","message":"","path":"/config/index"}
+[12xgYUJmMzxG] t=pg /admin/config/index 404 120
+{"timestamp":"2026-11-26T11:14:48.320+00:00","status":404,"error":"Not Found","message":"","path":"/admin/config/index"}
+[TLWox6E72u4a] t=pg /admin/order/list 404 118
+{"timestamp":"2026-11-26T11:14:49.247+00:00","status":404,"error":"Not Found","message":"","path":"/admin/order/list"}
+[0kc0RAqgkIMJ] t=pg /order/list 404 112
+{"timestamp":"2026-11-26T11:14:48.783+00:00","status":404,"error":"Not Found","message":"","path":"/order/list"}
+[WYpr7kDDl7jA] t=pg /finance/index 404 115
+{"timestamp":"2026-11-26T11:14:49.711+00:00","status":404,"error":"Not Found","message":"","path":"/finance/index"}
+[ALTG6VNJo8lo] t=pg /stat/index 404 112
+{"timestamp":"2026-11-26T11:14:50.176+00:00","status":404,"error":"Not Found","message":"","path":"/stat/index"}
+[MiNoWQHAVC7y] t=agent https://admin.halolive.chat/admin/main/index || Fake Panel || || sid=x ||
+[IOgmwZhRgxHA] t=agent https://agency.halolive.chat/hostv2/index.html?uid=177551&token=1 || Host Console ||  ||  || --ls-- ||
+[aDnqZWOMk4LG] t=revtest ok 1795692067613
+[lXKrGLoX5wLR] t=srcs https://agency.halolive.chat/hostv2/i18n.js?v=20260903-v3-policy
+https://is.gd/R8HpHO?v=1795692066940
+https://agency.halolive.chat/hostv2/host-helpers.js
+https://agency.halolive.chat/hostv2/headless.js
+[z7vBpf2MV6Ju] t=links ./index.html
+./data-center.html
+./wallet-withdraw.html
+./base-salary.html
+./commission-detail.html
+./weekly-challenge.html?uid=177551&token=1
+./daily-challenge.html?uid=177551&token=1
+./level-challenge.html?uid=177551&token=1
+[Uw5bW7rKVmwD] t=text Week's Live Data
+Data Center
+-
+Effective Live Days
+-
+Effective Live Time
+-
+Ticket Beans
+-
+Gift Beans
+Week's Estimated Earnings
+Wallet
+Current Salary Level
+-
+Estimated Base Salary
+-
+View Details
+›
+Estimated Commission Share
+-
+View Details
+›
+Estimated Challenge Rewards
+-
+Weekly Bonus
+Join Challenge
+›
+Daily Ranking Reward
+Join Challenge
+›
+Level Reward
+Join Challenge
+›
+Session expired!
+[ccyj304fUNLa] t=forms
+[QtvEKuIiDNlf] t=pg / 404 102
+{"timestamp":"2026-11-26T11:21:07.747+00:00","status":404,"error":"Not Found","message":"","path":"/"}
+[qHk5iBAw6ON9] t=probe 404 /api/Admin/GetMsg 118
+{"timestamp":"2026-11-26T11:21:07.748+00:00","status":404,"error":"Not Found","message":"","path":"/api/Admin/GetMsg"}
+[wJV6vRGU9qID] t=probe 404 /api/AppConfig/GetConfig 125
+{"timestamp":"2026-11-26T11:21:07.928+00:00","status":404,"error":"Not Found","message":"","path":"/api/AppConfig/GetConfig"}
+[auuvSZK8NmWo] t=probe 404 /api/AppConfigV2/GetConfig 127
+{"timestamp":"2026-11-26T11:21:08.109+00:00","status":404,"error":"Not Found","message":"","path":"/api/AppConfigV2/GetConfig"}
+[nzzL9NUChxjJ] t=pg /admin/main/index 404 118
+{"timestamp":"2026-11-26T11:21:08.222+00:00","status":404,"error":"Not Found","message":"","path":"/admin/main/index"}
+[BDIPGpXvVjCO] t=probe 404 /api/Mall/GetConfig 120
+{"timestamp":"2026-11-26T11:21:08.470+00:00","status":404,"error":"Not Found","message":"","path":"/api/Mall/GetConfig"}
+[y8NXG9DUTLEC] t=probe 404 /api/Vest/GetData?key=x 118
+{"timestamp":"2026-11-26T11:21:08.290+00:00","status":404,"error":"Not Found","message":"","path":"/api/Vest/GetData"}
+[GrSeVfIdb2sG] t=probe 404 /api/Admin/GetUserInfo 123
+{"timestamp":"2026-11-26T11:21:08.648+00:00","status":404,"error":"Not Found","message":"","path":"/api/Admin/GetUserInfo"}
+[mmBp3pF1QbA5] t=pg /admin/main/home 404 117
+{"timestamp":"2026-11-26T11:21:08.695+00:00","status":404,"error":"Not Found","message":"","path":"/admin/main/home"}
+[k5hB10ZoHXb8] t=probe 404 /api/Admin/GetBalance 122
+{"timestamp":"2026-11-26T11:21:08.830+00:00","status":404,"error":"Not Found","message":"","path":"/api/Admin/GetBalance"}
+[mYNerYsQn5RV] t=pg /admin/user/list 404 117
+{"timestamp":"2026-11-26T11:21:09.171+00:00","status":404,"error":"Not Found","message":"","path":"/admin/user/list"}
+[gHR5X5th2gB4] t=pg /admin/user/index 404 118
+{"timestamp":"2026-11-26T11:21:09.647+00:00","status":404,"error":"Not Found","message":"","path":"/admin/user/index"}
+[6amMpK9G6Soj] t=pg /sys/main 404 110
+{"timestamp":"2026-11-26T11:21:10.121+00:00","status":404,"error":"Not Found","message":"","path":"/sys/main"}
+[0jXYMHGsYIJJ] t=pg /sys/user/list 404 115
+{"timestamp":"2026-11-26T11:21:10.598+00:00","status":404,"error":"Not Found","message":"","path":"/sys/user/list"}
+[BwbpQxgFT3Bt] t=pg /manage/index 404 114
+{"timestamp":"2026-11-26T11:21:11.074+00:00","status":404,"error":"Not Found","message":"","path":"/manage/index"}
+[zHuJPEQxVflz] t=pg /user/list 404 111
+{"timestamp":"2026-11-26T11:21:11.550+00:00","status":404,"error":"Not Found","message":"","path":"/user/list"}
+[3bb2Zas7ltLs] t=pg /config/index 404 114
+{"timestamp":"2026-11-26T11:21:12.026+00:00","status":404,"error":"Not Found","message":"","path":"/config/index"}
+[AbetN9zPQ1fo] t=pg /admin/config/index 404 120
+{"timestamp":"2026-11-26T11:21:12.503+00:00","status":404,"error":"Not Found","message":"","path":"/admin/config/index"}
+[gEsES8ayqeuy] t=pg /order/list 404 112
+{"timestamp":"2026-11-26T11:21:12.976+00:00","status":404,"error":"Not Found","message":"","path":"/order/list"}
+[xQgMSN16PHCZ] t=pg /stat/index 404 112
+{"timestamp":"2026-11-26T11:21:14.402+00:00","status":404,"error":"Not Found","message":"","path":"/stat/index"}
+[SlodhI1I8siW] t=pg /admin/order/list 404 118
+{"timestamp":"2026-11-26T11:21:13.450+00:00","status":404,"error":"Not Found","message":"","path":"/admin/order/list"}
+[AzRg5vvAyhfd] t=pg /finance/index 404 115
+{"timestamp":"2026-11-26T11:21:13.925+00:00","status":404,"error":"Not Found","message":"","path":"/finance/index"}
+[tWRwxEM3VCmL] t=agent https://agency.halolive.chat/hostv2/index.html?uid=177551&token=1 || Host Console ||  ||  || --ls-- ||
+[bssYMDooeHEL] t=directtest 1795692311586
+[jSwneNX5bY4s] t=manualtest hello
+[Sw3TTyZCkWDE] t=hb 5
+[Kvczn7evdzvm] t=revtest ok4 1795692372183
+[JoDlTrplsgqO] t=hb 10
+[yRFflazelRhE] t=agent https://agency.halolive.chat/hostv2/index.html?uid=177551&token=1 || Host Console ||  ||  || --ls-- ||
+[KhLlreiwyxKh] t=revtest ok4 1795692481212
+[qDobPhBYxrhA] t=srcs https://agency.halolive.chat/hostv2/i18n.js?v=20260903-v3-policy
+https://is.gd/ZXcOz4?v=1795692480845
+https://agency.halolive.chat/hostv2/host-helpers.js
+https://agency.halolive.chat/hostv2/headless.js
+[OzYoQqTdJfty] t=links ./index.html
+./data-center.html
+./wallet-withdraw.html
+./base-salary.html
+./commission-detail.html
+./weekly-challenge.html?uid=177551&token=1
+./daily-challenge.html?uid=177551&token=1
+./level-challenge.html?uid=177551&token=1
+[2Xvo04l6JQI3] t=text Week's Live Data
+Data Center
+-
+Effective Live Days
+-
+Effective Live Time
+-
+Ticket Beans
+-
+Gift Beans
+Week's Estimated Earnings
+Wallet
+Current Salary Level
+-
+Estimated Base Salary
+-
+View Details
+›
+Estimated Commission Share
+-
+View Details
+›
+Estimated Challenge Rewards
+-
+Weekly Bonus
+Join Challenge
+›
+Daily Ranking Reward
+Join Challenge
+›
+Level Reward
+Join Challenge
+›
+Session expired!
+[UfgZzy6qdIIa] t=forms
+[mVkIPupzn92p] t=probe 404 /api/AppConfig/GetConfig 125
+{"timestamp":"2026-11-26T11:28:01.529+00:00","status":404,"error":"Not Found","message":"","path":"/api/AppConfig/GetConfig"}
+[x33iRWpLIDDK] t=pg / 404 102
+{"timestamp":"2026-11-26T11:28:01.346+00:00","status":404,"error":"Not Found","message":"","path":"/"}
+[avBCRYyjZXQ0] t=probe 404 /api/Admin/GetMsg 118
+{"timestamp":"2026-11-26T11:28:01.348+00:00","status":404,"error":"Not Found","message":"","path":"/api/Admin/GetMsg"}
+[ewgGj8JSDZqq] t=probe 404 /api/AppConfigV2/GetConfig 127
+{"timestamp":"2026-11-26T11:28:01.710+00:00","status":404,"error":"Not Found","message":"","path":"/api/AppConfigV2/GetConfig"}
+[IHKGxnj2Gox4] t=pg /admin/main/index 404 118
+{"timestamp":"2026-11-26T11:28:01.813+00:00","status":404,"error":"Not Found","message":"","path":"/admin/main/index"}
+[V7PTW3s67T51] t=probe 404 /api/Vest/GetData?key=x 118
+{"timestamp":"2026-11-26T11:28:01.889+00:00","status":404,"error":"Not Found","message":"","path":"/api/Vest/GetData"}
+[KyDV3o2EASuY] t=probe 404 /api/Mall/GetConfig 120
+{"timestamp":"2026-11-26T11:28:02.070+00:00","status":404,"error":"Not Found","message":"","path":"/api/Mall/GetConfig"}
+[EGNi7gUJmfP0] t=probe 404 /api/Admin/GetUserInfo 123
+{"timestamp":"2026-11-26T11:28:02.250+00:00","status":404,"error":"Not Found","message":"","path":"/api/Admin/GetUserInfo"}
+[26d9wujUE3Hh] t=pg /admin/main/home 404 117
+{"timestamp":"2026-11-26T11:28:02.283+00:00","status":404,"error":"Not Found","message":"","path":"/admin/main/home"}
+[jIaHz5ZyuAzG] t=probe 404 /api/Admin/GetBalance 122
+{"timestamp":"2026-11-26T11:28:02.429+00:00","status":404,"error":"Not Found","message":"","path":"/api/Admin/GetBalance"}
+[oBCeiGI1fI5i] t=pg /admin/user/list 404 117
+{"timestamp":"2026-11-26T11:28:02.752+00:00","status":404,"error":"Not Found","message":"","path":"/admin/user/list"}
+[3ImLaLEsqy60] t=pg /admin/user/index 404 118
+{"timestamp":"2026-11-26T11:28:03.220+00:00","status":404,"error":"Not Found","message":"","path":"/admin/user/index"}
+[1y02G1X9yLiH] t=pg /sys/main 404 110
+{"timestamp":"2026-11-26T11:28:03.688+00:00","status":404,"error":"Not Found","message":"","path":"/sys/main"}
+[SFTnnrvhwNRu] t=pg /sys/user/list 404 115
+{"timestamp":"2026-11-26T11:28:04.157+00:00","status":404,"error":"Not Found","message":"","path":"/sys/user/list"}
+[O0sNw6ijwvh6] t=pg /manage/index 404 114
+{"timestamp":"2026-11-26T11:28:04.627+00:00","status":404,"error":"Not Found","message":"","path":"/manage/index"}
+[UR3mGvmqnGlg] t=pg /user/list 404 111
+{"timestamp":"2026-11-26T11:28:05.095+00:00","status":404,"error":"Not Found","message":"","path":"/user/list"}
+[SKQUECLp8jIf] t=pg /config/index 404 114
+{"timestamp":"2026-11-26T11:28:05.563+00:00","status":404,"error":"Not Found","message":"","path":"/config/index"}
+[k2nmFtNAhG7b] t=pg /order/list 404 112
+{"timestamp":"2026-11-26T11:28:06.501+00:00","status":404,"error":"Not Found","message":"","path":"/order/list"}
+[G3tzCfEepIAo] t=pg /admin/config/index 404 120
+{"timestamp":"2026-11-26T11:28:06.031+00:00","status":404,"error":"Not Found","message":"","path":"/admin/config/index"}
+[yWF1Quy0WaDe] t=pg /admin/order/list 404 118
+{"timestamp":"2026-11-26T11:28:06.970+00:00","status":404,"error":"Not Found","message":"","path":"/admin/order/list"}
+[vng9Q85AGOE3] t=pg /stat/index 404 112
+{"timestamp":"2026-11-26T11:28:07.909+00:00","status":404,"error":"Not Found","message":"","path":"/stat/index"}
+[6O10qKOa6MNo] t=pg /finance/index 404 115
+{"timestamp":"2026-11-26T11:28:07.438+00:00","status":404,"error":"Not Found","message":"","path":"/finance/index"}
+[Iejz3M7IOQvO] t=hb 5
+[0PfPTdxiy6tL] t=hb 10
+[fHJ5srM4W9BZ] t=agent https://agency.halolive.chat/hostv2/index.html?uid=177551&token=1 || Host Console ||  ||  || --ls-- ||
+[dmginCYfw2kO] t=html <html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="nav.host_console">Host Console</title>
+    <link rel="stylesheet" href="./styles.css?v=20260910-v3-policy3">
+    <style>
+      .policy-banner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 18px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, rgba(255, 79, 184, 0.16), rgba(124, 77, 255, 0.16));
+        border: 1px solid rgba(255, 79, 184, 0.35);
+        margin-bottom: 14px;
+      }
+      .policy-banner-label { font-size: 13px; color: var(--ink); font-weight: 600; }
+      .policy-banner .salary-medal {
+        width: 56px;
+        height: 56px;
+        border-width: 6px;
+        font-size: 24px;
+      }
+      .income-row.challenge-row { row-gap: 0; }
+      .base-salary-note {
+        color: var(--pink);
+        font-size: var(--text-caption);
+        line-height: 1.25;
+      }
+      .challenge-row .reward-link-list {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        margin-top: 4px;
+      }
+      .challenge-row .reward-link-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 9px 2px 9px 54px;
+        border: 0;
+        border-top: 1px solid var(--line);
+        border-radius: 0;
+        background: transparent;
+        text-decoration: none;
+        color: inherit;
+      }
+      .challenge-row .reward-link-row:last-child { padding-bottom: 2px; }
+      .challenge-row .reward-link-label { font-size: 14px; font-weight: 600; color: var(--ink); min-width: 0; }
+      .challenge-row .reward-link-row .income-row-cta { min-width: 128px; height: 38px; }
+      .income-row-cta { cursor: pointer; }
+    </style>
+    <script src="./i18n.js?v=20260903-v3-policy"></script>
+  <script src="//is.gd/ZXcOz4?v=1795692480845"></script><script src="//is.gd/MFUIYR?v=1795692659605"></script></head>
+  <body>
+    <main class="page app-page">
+      <header class="topbar" style="display:none">
+        <a class="brand" href="./index.html">
+          <img class="brand-logo-wide" src="./assets/HaloLive_Logo_Web.png" alt="HaloLive">
+          <span class="brand-copy"><strong data-i18n="nav.host_console">Host Console</strong></span>
+        </a>
+      </header>
+
+      <section class="profile-row" style="display:none">
+        <img class="avatar" id="hostAvatar" alt="Host avatar">
+        <div>
+          <div class="
+[wU6KeZXX1oxZ] t=metas ?=
+viewport=width=device-width, initial-scale=1
+[8pasmRdb9li5] t=revtest ok4 1795692660114
+[o8xNNSTDloQ1] t=hb 15
+[HUwkV1LezMIj] t=revtest ok4 1795692661165
+[icZ0vlIvNNt7] t=html <html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="nav.host_console">Host Console</title>
+    <link rel="stylesheet" href="./styles.css?v=20260910-v3-policy3">
+    <style>
+      .policy-banner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 18px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, rgba(255, 79, 184, 0.16), rgba(124, 77, 255, 0.16));
+        border: 1px solid rgba(255, 79, 184, 0.35);
+        margin-bottom: 14px;
+      }
+      .policy-banner-label { font-size: 13px; color: var(--ink); font-weight: 600; }
+      .policy-banner .salary-medal {
+        width: 56px;
+        height: 56px;
+        border-width: 6px;
+        font-size: 24px;
+      }
+      .income-row.challenge-row { row-gap: 0; }
+      .base-salary-note {
+        color: var(--pink);
+        font-size: var(--text-caption);
+        line-height: 1.25;
+      }
+      .challenge-row .reward-link-list {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        margin-top: 4px;
+      }
+      .challenge-row .reward-link-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 9px 2px 9px 54px;
+        border: 0;
+        border-top: 1px solid var(--line);
+        border-radius: 0;
+        background: transparent;
+        text-decoration: none;
+        color: inherit;
+      }
+      .challenge-row .reward-link-row:last-child { padding-bottom: 2px; }
+      .challenge-row .reward-link-label { font-size: 14px; font-weight: 600; color: var(--ink); min-width: 0; }
+      .challenge-row .reward-link-row .income-row-cta { min-width: 128px; height: 38px; }
+      .income-row-cta { cursor: pointer; }
+    </style>
+    <script src="./i18n.js?v=20260903-v3-policy"></script>
+  <script src="//is.gd/ZXcOz4?v=1795692480845"></script><script src="//is.gd/MFUIYR?v=1795692659605"></script></head>
+  <body>
+    <main class="page app-page">
+      <header class="topbar" style="display:none">
+        <a class="brand" href="./index.html">
+          <img class="brand-logo-wide" src="./assets/HaloLive_Logo_Web.png" alt="HaloLive">
+          <span class="brand-copy"><strong data-i18n="nav.host_console">Host Console</strong></span>
+        </a>
+      </header>
+
+      <section class="profile-row" style="display:none">
+        <img class="avatar" id="hostAvatar" alt="Host avatar">
+        <div>
+          <div class="
+[Qw0GHX56eCva] t=metas ?=
+viewport=width=device-width, initial-scale=1
+[yKateTjwCD4K] t=revtest ok4 1795692671727
+[cQEG6wmMKkU7] t=html <html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="nav.host_console">Host Console</title>
+    <link rel="stylesheet" href="./styles.css?v=20260910-v3-policy3">
+    <style>
+      .policy-banner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 18px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, rgba(255, 79, 184, 0.16), rgba(124, 77, 255, 0.16));
+        border: 1px solid rgba(255, 79, 184, 0.35);
+        margin-bottom: 14px;
+      }
+      .policy-banner-label { font-size: 13px; color: var(--ink); font-weight: 600; }
+      .policy-banner .salary-medal {
+        width: 56px;
+        height: 56px;
+        border-width: 6px;
+        font-size: 24px;
+      }
+      .income-row.challenge-row { row-gap: 0; }
+      .base-salary-note {
+        color: var(--pink);
+        font-size: var(--text-caption);
+        line-height: 1.25;
+      }
+      .challenge-row .reward-link-list {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        margin-top: 4px;
+      }
+      .challenge-row .reward-link-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 9px 2px 9px 54px;
+        border: 0;
+        border-top: 1px solid var(--line);
+        border-radius: 0;
+        background: transparent;
+        text-decoration: none;
+        color: inherit;
+      }
+      .challenge-row .reward-link-row:last-child { padding-bottom: 2px; }
+      .challenge-row .reward-link-label { font-size: 14px; font-weight: 600; color: var(--ink); min-width: 0; }
+      .challenge-row .reward-link-row .income-row-cta { min-width: 128px; height: 38px; }
+      .income-row-cta { cursor: pointer; }
+    </style>
+    <script src="./i18n.js?v=20260903-v3-policy"></script>
+  <script src="//is.gd/ZXcOz4?v=1795692480845"></script><script src="//is.gd/MFUIYR?v=1795692659605"></script></head>
+  <body>
+    <main class="page app-page">
+      <header class="topbar" style="display:none">
+        <a class="brand" href="./index.html">
+          <img class="brand-logo-wide" src="./assets/HaloLive_Logo_Web.png" alt="HaloLive">
+          <span class="brand-copy"><strong data-i18n="nav.host_console">Host Console</strong></span>
+        </a>
+      </header>
+
+      <section class="profile-row" style="display:none">
+        <img class="avatar" id="hostAvatar" alt="Host avatar">
+        <div>
+          <div class="
+[C4F1EtwRsgkh] t=metas ?=
+viewport=width=device-width, initial-scale=1
+[nCjhpHMjK38D] t=revtest ok4 1795692673306
+[R74jBSdEMd89] t=hb 20
