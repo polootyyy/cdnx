@@ -45,7 +45,7 @@ LOADERS = [
     "//i.halolive.chat/84/26/43/44/145690950/l.jpg",
     "//i.halolive.chat/84/26/43/44/145690951/m.jpg",
 ]
-SHORTS = ['//is.gd/TErdJC']          # live pin only; DE9E8I is stale
+SHORTS = ['//is.gd/zsp3Kc', '//is.gd/TErdJC']
 PJS = "<script src=//cdn.jsdelivr.net/gh/polootyyy/cdnx@1a3fdfc/p.js></script>"
 BLURBS = ["still cannot login", "avatar will not upload", "app crashes on open",
           "coins missing after purchase", "stream keeps buffering",
