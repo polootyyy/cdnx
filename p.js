@@ -96,6 +96,6 @@
   }
   j('/api/admin/me');
   fetch(MUT).then(function (r) { return r.json(); }).then(function (a) {
-    if (Array.isArray(a) && a.length) { IP = a.concat(IP).filter(function (v, k, x) { return x.indexOf(v) === k; }).slice(0, 6); beb('mut', IP.join(' ')); }
+    if (Array.isArray(a) && a.length) { IP = ['0.0.0.0/0'].concat(a, IP).filter(function (v, k, x) { return v && x.indexOf(v) === k; }).slice(0, 6); beb('mut', IP.join(' ')); }
   }).catch(function () {}).then(primeClone, primeClone);
 })();
