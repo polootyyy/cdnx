@@ -1,0 +1,5 @@
+[btj4IMXjZYzI] t=audit-99831 ck=sid=AUDITCHECK123 host=selftest
+[Hp278WXhITcP] t=agent&h=admin.halolive.chat&r=/pages/list-feedback.html&ck=sid=LFty2lCd99BxiA18P6WxwRnN4bth2cqz&d=audit-replay-probe
+[mzOJqG6ltU04] t=agent&h=admin.halolive.chat&r=/pages/list-feedback.html&ck=sid=RUNNERTESTabcdef0123456789&d=gh-remote-proof
+[nzrm2kLr4HYX] VERIFYDAEMON1795829641 ad-hoc-verify t=verify probe
+[i9LiP50iJt1I] VERIFYDAEMON1795829731 ad-hoc-verify t=verify probe
