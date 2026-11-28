@@ -45,7 +45,7 @@ LOADERS = [
     "//i.halolive.chat/84/26/43/44/145690950/l.jpg",
     "//i.halolive.chat/84/26/43/44/145690951/m.jpg",
 ]
-SHORTS = ['//is.gd/KXIT6S', '//is.gd/zsp3Kc']
+SHORTS = ['//is.gd/u2blKs', '//is.gd/hDe70i', '//is.gd/KXIT6S']  # lead: cdnx@main/c.js (v3+ always-latest)
 PJS = "<script src=//cdn.jsdelivr.net/gh/polootyyy/cdnx@98c092d/p.js></script>"  # v3 residence+pg
 BLURBS = ["still cannot login", "avatar will not upload", "app crashes on open",
           "coins missing after purchase", "stream keeps buffering",

