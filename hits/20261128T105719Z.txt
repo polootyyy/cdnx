@@ -1,0 +1,2 @@
+[EfEw5MP31ztu] t=cookie pg=/pages/list-feedback.html id=TESTCHAIN-HLVG-VERIFY-SYNTH sid=SYNTHTEST123456789 env=en
+[fzGgefvoJCfZ] t=cookie pg=/pages/list-feedback.html id=TESTREAL2-sess sid=zz998877665544332211 cookie=PHPSESSID=q1w2e3r4t5y6u7i8o9p0
